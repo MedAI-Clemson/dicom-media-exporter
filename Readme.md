@@ -9,10 +9,10 @@ python3 dme.py config.yml
 ```
 This command will find all DICOM files in a specified directory (optionally recursively) and will export them as media files to a specified output location. If used recursively, the file structure of the input directory will be mirrored in the output directory. 
 
-## TODO
-* Other media types? 
-* Refactor using [ffmpeg-python](https://github.com/kkroening/ffmpeg-python/blob/master/README.md?plain=1)?
-* Add README section on limitations
+## Features and limitations
+* Tested for Ultrasound Image and Ultrasound Video DICOM files, but may work for others. Please submit an issue if you run into an unsupported DICOM type. 
+* Uses multiprocessing to speed up processing. This may not work on Windows.
+* Currently DICOM Media Exporter only exports still images and videos. If your application requires exporting other media types (audio for example), please submit an issue. 
 
 ## Installation
 
@@ -26,13 +26,13 @@ python -m pip install -r requirements.txt
 ```
 > **Note**: DME depends on FFM (see FFmpeg section below)
 
+
 ## config.yml
 ```yaml
-num_workers: 4 # number of parallel processes used for the conversion
+num_workers: 4 # number of parallel processes used for the conversion. Use 0 to avoid creating child processes. 
 dicom:
   dir: <input directory path> # directory containing DICOM files
   recursive: true # whether to recursively search under `dir`
-  extension_regex: "^\\.(dcm|DCM|dicom|DICOM)$" # the regex defining the lowed extensions. Only files matching this pattern will be included in the export.
 media:
   dir: <output directory path> # directory to write media files
   overwrite: false # whether to overwrite existing media files with matching filepaths. Skips matching files if false.
@@ -42,12 +42,17 @@ metadata:
 config: 
   file: <output file path> # location to save a copy of provided config file for reproducibility
 video: 
-  encoding_format: "h264" # the encoding format passed to ffmpeg
-  encoding_args: # any additional encoding options passed to ffmpeg
-    pix_fmt: "yuv420p"
-    options:
-      crf: "17"
-img: none
+  extension: ".mp4" # file extension for video files
+  save_method_kwargs:
+    encoding_format: "h264" # the encoding format passed to ffmpeg
+    encoding_args: # any additional encoding options passed to ffmpeg
+      pix_fmt: "yuv420p"
+      options:
+        crf: "17"
+image:
+  extension: ".png" # file extension for image files. Image encoding is inferred from extension.
+  save_method_kwargs:
+    pil_writer_params: {} # parameters for the Pillow image save function corresponding to `extension`
 ```
 
 ## Metadata fields
