@@ -1,0 +1,11 @@
+input:
+  dir: "/zfs/wficai/pda/batch_2/"
+output:
+  dir: "/scratch/dane2/dcm2vid_test/batch_2"
+  metadata_file: "/scratch/dane2/dcm2vid_test/dicom_metadata_batch_2.jsonl"
+  stream_format: "h264"
+  stream_args:
+    pix_fmt: "yuv420p"
+    options:
+      crf: "17"
+num_workers: 32
