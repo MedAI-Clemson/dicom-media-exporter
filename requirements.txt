@@ -1,3 +1,4 @@
 pydicom
-tqdm
+Pillow
 av
+pyyaml
