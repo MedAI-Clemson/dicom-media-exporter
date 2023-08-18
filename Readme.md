@@ -1,9 +1,9 @@
 # DICOM Media Exporter
 
-The DICOM Media Exporter (DME) tool extracts all image and video data from DICOM (.dcm) files and saves them to disc. The tool also exports all metadata contained in the dicom files in json format.
+When preparing medical imaging data for deep learning, researchers often need to extract all imagery from a large dataset of DICOM files. DICOM Media Exporter (DME) makes this quick and easy. DME extracts all image and video data from a collection of DICOM files and saves them to disc. The tool also exports all metadata contained in the DICOM files in json format.
 
 ## Quick start
-All of DME's settings are passed via a yaml configuration file (see `config.yml` section for details). This config includes the location of your DICOM files, where you want to save the outputs, and details about the output format. Run DME using
+All of DME's settings are passed via a yaml configuration file (see `config.yml` section 👇 for details). This config includes the location of your DICOM files, where you want to save the outputs, and details about the output format. Run DME using
 ```
 python3 dme.py config.yml
 ```
@@ -24,7 +24,7 @@ and install the python dependencies listed in `requirements.txt` file. Install t
 ```
 python -m pip install -r requirements.txt
 ```
-> **Note**: DME depends on FFM (see FFmpeg section below)
+> **Note**: DME depends on FFmpeg (see FFmpeg section below)
 
 
 ## config.yml
