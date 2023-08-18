@@ -13,6 +13,7 @@ This command will find all DICOM files in a specified directory (optionally recu
 * Tested for Ultrasound Image and Ultrasound Video DICOM files, but may work for others. Please submit an issue if you run into an unsupported DICOM type. 
 * Uses multiprocessing to speed things up ⚡. This feature has not been tested on Windows.
 * Currently DICOM Media Exporter only exports still images and videos. If your application requires exporting other media types (audio for example), please submit an issue. 
+* DME uses Pillow to encode images and FFmpeg to encode video. DME supports any output format options supported by those libraries by listing key-value pair options in the configuration file.
 
 ## Installation
 
@@ -65,7 +66,7 @@ In addition to the DICOM fields, the exported metadata includes the following ad
 * `media_type`: the type of output media, either `video` or `image`
 
 ## FFmpeg
-DME uses FFmpeg to encode DICOM single- and multi-frame images as image and video files. Before using DME, FFmpeg must be installed and accessible via the `$PATH` environment variable.
+DME uses FFmpeg to encode DICOM multi-frame images as video files. Before using DME, FFmpeg must be installed and accessible via the `$PATH` environment variable.
 
 There are a variety of ways to install FFmpeg:
 * The [official download links](https://ffmpeg.org/download.html).
