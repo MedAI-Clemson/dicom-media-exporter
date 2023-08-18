@@ -11,7 +11,7 @@ This command will find all DICOM files in a specified directory (optionally recu
 
 ## Features and limitations
 * Tested for Ultrasound Image and Ultrasound Video DICOM files, but may work for others. Please submit an issue if you run into an unsupported DICOM type. 
-* Uses multiprocessing to speed up processing. This may not work on Windows.
+* Uses multiprocessing to speed things up ⚡. This feature has not been tested on Windows.
 * Currently DICOM Media Exporter only exports still images and videos. If your application requires exporting other media types (audio for example), please submit an issue. 
 
 ## Installation
