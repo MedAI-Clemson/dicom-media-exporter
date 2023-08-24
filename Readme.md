@@ -38,7 +38,7 @@ media:
   overwrite: false # whether to overwrite existing media files with matching filepaths. Skips matching files if false.
 metadata: 
   file: <output file path> # JSON-lines file (usually *.jsonl) containing DICOM metadata
-  append: false # whether to append if `file` already exists. If false, raises an error if `file` exists to avoid data duplication
+  append: false # whether to append if `file` already exists. If false and `file` exists, raises an error to avoid data duplication
 config: 
   file: <output file path> # location to save a copy of provided config file for reproducibility
 video: 
@@ -81,3 +81,12 @@ ffmpeg version 4.4.1 Copyright (c) 2000-2021 the FFmpeg developers
 ```
 
 > **Note**: The actual version information displayed here may vary from one system to another; but if a message such as `ffmpeg: command not found` appears instead of the version information, FFmpeg is not properly installed.
+
+## High priority TODO items
+* Support use of Python API to export files
+* Support the export of 3d data formats
+* Support the export of video/3d as folders with image/slice frames
+* Test on Windows machine
+* Use proper logger
+* Support audio export
+* Support conversion of database from Orthanc server
