@@ -1,9 +1,9 @@
 # DICOM Media Exporter
 
-The DICOM Media Exporter (DME) tool extracts all image and video data from DICOM (.dcm) files and saves them to disc. The tool also exports all metadata contained in the dicom files in json format.
+When preparing medical imaging data for deep learning, researchers often need to extract all imagery from a large dataset of DICOM files. DICOM Media Exporter (DME) makes this quick and easy. DME extracts all image and video data from a collection of DICOM files and saves them to disc. The tool also exports all metadata contained in the DICOM files in json format.
 
 ## Quick start
-All of DME's settings are passed via a yaml configuration file (see `config.yml` section for details). This config includes the location of your DICOM files, where you want to save the outputs, and details about the output format. Run DME using
+All of DME's settings are passed via a yaml configuration file (see `config.yml` section 👇 for details). This config includes the location of your DICOM files, where you want to save the outputs, and details about the output format. Run DME using
 ```
 python3 dme.py config.yml
 ```
@@ -11,8 +11,9 @@ This command will find all DICOM files in a specified directory (optionally recu
 
 ## Features and limitations
 * Tested for Ultrasound Image and Ultrasound Video DICOM files, but may work for others. Please submit an issue if you run into an unsupported DICOM type. 
-* Uses multiprocessing to speed up processing. This may not work on Windows.
+* Uses multiprocessing to speed things up ⚡. This feature has not been tested on Windows.
 * Currently DICOM Media Exporter only exports still images and videos. If your application requires exporting other media types (audio for example), please submit an issue. 
+* DME uses Pillow to encode images and FFmpeg to encode video. DME supports any output format options supported by those libraries by listing key-value pair options in the configuration file.
 
 ## Installation
 
@@ -24,7 +25,7 @@ and install the python dependencies listed in `requirements.txt` file. Install t
 ```
 python -m pip install -r requirements.txt
 ```
-> **Note**: DME depends on FFM (see FFmpeg section below)
+> **Note**: DME depends on FFmpeg (see FFmpeg section below)
 
 
 ## config.yml
@@ -65,7 +66,7 @@ In addition to the DICOM fields, the exported metadata includes the following ad
 * `media_type`: the type of output media, either `video` or `image`
 
 ## FFmpeg
-DME uses FFmpeg to encode DICOM single- and multi-frame images as image and video files. Before using DME, FFmpeg must be installed and accessible via the `$PATH` environment variable.
+DME uses FFmpeg to encode DICOM multi-frame images as video files. Before using DME, FFmpeg must be installed and accessible via the `$PATH` environment variable.
 
 There are a variety of ways to install FFmpeg:
 * The [official download links](https://ffmpeg.org/download.html).
